@@ -1,14 +1,28 @@
 import pygame
-
+# import GIFImage
+# import pyglet
 
 pygame.init()
+#def main():
+  #boi = GIFImage("animations/lil boi.gif")
+  #if event.key == pygame.K_z:
+        #boi.render(DS, (player.rect.y, player.rect.x))
+
+  #if __name__ == "__main__":
+       #main()
+
 DS = pygame.display.set_mode((640, 480))
 W, H = DS.get_size()
 clock = pygame.time.Clock()
 FPS = 60
 
 PLAYER_IMAGE = pygame.Surface((15, 27))
-PLAYER_IMAGE.fill((70, 240, 120))
+
+PLAYER_IMAGE = pygame.image.load('animations/lil boi1.png')
+attack = pygame.image.load('animations/enemy boi.png')
+
+#DS.blit(PLAYER_IMAGE, (0,0))
+"""PLAYER_IMAGE.fill((70, 240, 120))"""
 
 
 class Platform(pygame.sprite.Sprite):
@@ -127,7 +141,11 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_z:
+                print("PRESSED!")
+                PLAYER_IMAGE.blit(attack, (0, 0))
+                pygame.display.update()
+            elif event.key == pygame.K_LEFT:
                 player._vx = -3
             elif event.key == pygame.K_RIGHT:
                 player._vx = 3
@@ -138,6 +156,8 @@ while not done:
                 player._vx = 0
             elif event.key == pygame.K_RIGHT and player._vx > 0:
                 player._vx = 0
+
+
 
     active_sprite_group.update()
 
